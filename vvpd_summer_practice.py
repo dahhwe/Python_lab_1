@@ -7,6 +7,17 @@
 
 import numpy as np
 from numpy import ndarray
+from enum import Enum, unique, auto
+
+
+@unique
+class Matrix(Enum):
+    SET_SAME_MATRIX = auto()
+    SET_RAND_MATRIX = auto()
+    CHECK_MAGIC_SQUARE = auto()
+    TRANSPOSE_MATRIX = auto()
+    PRINT_MATRIX = auto()
+    EXIT = auto()
 
 
 def input_check(num_char: str, limit: int) -> int:
@@ -19,9 +30,11 @@ def input_check(num_char: str, limit: int) -> int:
     :param int limit: Лимит, менее которого число не будет принято.
     :return: int(value) Подходящее число.
     """
-    while not (value := input(f"Введите {num_char} ({limit} ≤ {num_char}):")) \
+    value = input(f"Введите {num_char} ({limit} ≤ {num_char}):")
+    while not value \
             or not value.lstrip('-').isdigit() or int(value) < limit:
         print(f"Число должно быть больше или равно {limit}!")
+        value = input(f"Введите {num_char} ({limit} ≤ {num_char}):")
     return int(value)
 
 
@@ -62,7 +75,7 @@ def get_matrix(matrix_size: int) -> ndarray:
     return matrix_to_make
 
 
-def magic_square(square_matrix):
+def magic_square(square_matrix: ndarray) -> bool:
     """
     Функция проверяет, является ли матрица магическим квадратом.
     :param square_matrix: Квадратная матрица.
@@ -100,6 +113,20 @@ def transpose_matrix(square_matrix: ndarray) -> ndarray:
     return t_matrix
 
 
+def get_int_input() -> int:
+    valid_input = False
+    choice = input()
+    while not valid_input:
+        try:
+            choice = int(choice)
+        except ValueError:
+            print("Введите число:")
+            choice = input()
+        else:
+            valid_input = True
+    return int(choice)
+
+
 def main() -> None:
     """
     Главная функция программы, с возможностью дальнейшего выбора функций для
@@ -109,34 +136,37 @@ def main() -> None:
     print_menu()
     square_matrix = []
 
-    choice = input("Что вы хотите сделать: ")
-    while choice != "6":
+    print("Что вы хотите сделать?:")
+    choice = get_int_input()
 
-        if choice == "1":
+    while choice != Matrix.EXIT.value:
+        if choice == Matrix.SET_SAME_MATRIX.value:
             matrix_size = input_check("Размер матрицы", 1)
             square_matrix = get_same_elem_matrix(matrix_size)
-            print("Матрица задана!")
+            print("\nМатрица задана!")
 
-        elif choice == "2":
+        elif choice == Matrix.SET_RAND_MATRIX.value:
             matrix_size = input_check("Размер матрицы", 1)
             print(f"matrix size: {matrix_size}")
             square_matrix = get_matrix(matrix_size)
             print("Матрица задана!")
 
-        elif choice == "3":
-            print(f"Матрица является магическим квадратом!") if \
-                len(square_matrix) and magic_square(square_matrix) \
-                else print("Матрица не задана или"
-                           " не является магическим квадратом")
+        elif choice == Matrix.CHECK_MAGIC_SQUARE.value:
+            if len(square_matrix) and magic_square(square_matrix):
+                print(f"Матрица является магическим квадратом!")
+            elif not len(square_matrix):
+                print("Матрица не задана")
+            else:
+                print("Матрица не является магическим квадратом")
 
-        elif choice == "4":
+        elif choice == Matrix.TRANSPOSE_MATRIX.value:
             if len(square_matrix):
                 square_matrix = transpose_matrix(square_matrix)
                 print("Матрица транспонирована")
             else:
                 print("Матрица не задана")
 
-        elif choice == "5":
+        elif choice == Matrix.PRINT_MATRIX.value:
             print(square_matrix) if len(square_matrix) \
                 else print("Матрица не задана")
 
@@ -144,7 +174,9 @@ def main() -> None:
             print("Введите допустимое значение!")
 
         print_menu()
-        choice = input("Что вы хотите сделать: ")
+        print("Что вы хотите сделать?:")
+        choice = get_int_input()
+        
     print("До свидания!")
 
 
