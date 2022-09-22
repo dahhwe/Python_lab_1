@@ -176,7 +176,7 @@ def main() -> None:
         print_menu()
         print("Что вы хотите сделать?:")
         choice = get_int_input()
-        
+
     print("До свидания!")
 
 
