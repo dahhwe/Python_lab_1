@@ -5,7 +5,7 @@ animals = ['Дракон', 'Змея', 'Лошадь', 'Овца',
 
 def main() -> None:
     while not (dob := input("Введите ваш год рождения:")) \
-        or not dob.isdigit():
+            or not dob.isdigit():
         print("Ну так нельзя... Введите ваш год верно!")
     remainder = (int(dob) - 2000) % 12
     sodiac_sign = animals[remainder]
