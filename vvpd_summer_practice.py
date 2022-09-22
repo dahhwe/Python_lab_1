@@ -153,7 +153,7 @@ def main() -> None:
 
         elif choice == Matrix.CHECK_MAGIC_SQUARE.value:
             if square_matrix and magic_square(square_matrix):
-                print(f"Матрица является магическим квадратом!")
+                print("Матрица является магическим квадратом!")
             elif not square_matrix:
                 print("Матрица не задана")
             else:
