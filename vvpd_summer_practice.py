@@ -83,8 +83,8 @@ def magic_square(square_matrix: ndarray) -> bool:
     возвращается значение True.
     """
     # Проверка размера
-    for i in range(len(square_matrix)):
-        if len(square_matrix[i]) != len(square_matrix):
+    for i, item in enumerate(square_matrix):
+        if len(item) != len(square_matrix):
             return False
 
     # Проверка строк

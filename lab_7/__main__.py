@@ -93,8 +93,8 @@ def output_workplace():
     Функция выводит места работ
     :return:
     """
-    for i in range(len(WORKPLACES)):
-        workplace.workplace_information(WORKPLACES[i])
+    for i, item in enumerate(WORKPLACES):
+        workplace.workplace_information(item)
         print()
 
 
