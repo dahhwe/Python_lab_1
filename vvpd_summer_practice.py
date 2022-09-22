@@ -152,22 +152,22 @@ def main() -> None:
             print("Матрица задана!")
 
         elif choice == Matrix.CHECK_MAGIC_SQUARE.value:
-            if len(square_matrix) and magic_square(square_matrix):
+            if square_matrix and magic_square(square_matrix):
                 print(f"Матрица является магическим квадратом!")
-            elif not len(square_matrix):
+            elif not square_matrix:
                 print("Матрица не задана")
             else:
                 print("Матрица не является магическим квадратом")
 
         elif choice == Matrix.TRANSPOSE_MATRIX.value:
-            if len(square_matrix):
+            if square_matrix:
                 square_matrix = transpose_matrix(square_matrix)
                 print("Матрица транспонирована")
             else:
                 print("Матрица не задана")
 
         elif choice == Matrix.PRINT_MATRIX.value:
-            print(square_matrix) if len(square_matrix) \
+            print(square_matrix) if square_matrix \
                 else print("Матрица не задана")
 
         else:
