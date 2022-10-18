@@ -30,8 +30,10 @@ TEST_DATA = [
 
 class TestBinarySearch(unittest.TestCase):
     """Тест-кейс модуля binary_search"""
+
     def test_binary_search(self):
         """Тест функции search"""
         for iterable_obj, item, expected in TEST_DATA:
             with self.subTest():
-                self.assertEqual(binary_search.search(iterable_obj, item), expected)
+                self.assertEqual(binary_search.search(
+                    iterable_obj, item), expected)
