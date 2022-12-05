@@ -79,20 +79,29 @@ TEST_SEARCH_FEW_SUBSTR = [
     ('a', ('abc', 'a'), False, 'last', 1, {'abc': None, 'a': (0, )}),
     ('a', ('abc', 'a'), True, 'last', 1, {'abc': None, 'a': (0, )}),
 
-    ('ababbababa', ('aba', 'bba'), False, 'first', 4, {'aba': (0, 5, 7), 'bba': (3, )}),
-    ('ababbababa', ('aba', 'bba'), True, 'first', 4, {'aba': (0, 5, 7), 'bba': (3, )}),
-    ('ababbababa', ('aba', 'bba'), False, 'last', 4, {'aba': (7, 5, 0), 'bba': (3, )}),
-    ('ababbababa', ('aba', 'bba'), True, 'last', 4, {'aba': (7, 5, 0), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), False, 'first',
+     4, {'aba': (0, 5, 7), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), True, 'first',
+     4, {'aba': (0, 5, 7), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), False, 'last',
+     4, {'aba': (7, 5, 0), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), True, 'last',
+     4, {'aba': (7, 5, 0), 'bba': (3, )}),
 
-    ('ababbababa', ('aba', 'bba'), False, 'first', 3, {'aba': (0, 5), 'bba': (3, )}),
-    ('ababbababa', ('aba', 'bba'), True, 'first', 2, {'aba': (0, ), 'bba': (3, )}),
-    ('ababbababa', ('aba', 'bba'), False, 'last', 1, {'aba': (7, ), 'bba': None}),
-    ('ababbababa', ('aba', 'bba'), True, 'last', 10, {'aba': (7, 5, 0), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), False,
+     'first', 3, {'aba': (0, 5), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), True,
+     'first', 2, {'aba': (0, ), 'bba': (3, )}),
+    ('ababbababa', ('aba', 'bba'), False,
+     'last', 1, {'aba': (7, ), 'bba': None}),
+    ('ababbababa', ('aba', 'bba'), True, 'last',
+     10, {'aba': (7, 5, 0), 'bba': (3, )}),
 ]
 
 
 class TestSearch(unittest.TestCase):
     """Тест-кейс модуля search"""
+
     def test_binary_search_one_symbol(self):
         """Тест функции search для поиска строки из одного символа"""
         for string, sub_string, case_sensitivity, method, count, expected in TEST_SEARCH_ONE_SYMBOL:
