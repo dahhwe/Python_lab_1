@@ -154,7 +154,7 @@ def logger(func) -> Callable[[tuple[Any, ...], dict[str, Any]], Any]:
 @logger
 def search(string, sub_string, case_sensitivity=False, method="first",
            count=None) -> None | tuple[int, ...] |\
-                          dict[tuple[Any, ...] | Any, list[Any] | None | Any]:
+        dict[tuple[Any, ...] | Any, list[Any] | None | Any]:
     """
     Поиск подстроки в строке методом Ахо-Корасика.
     :param string: Строка.
@@ -192,7 +192,7 @@ def search(string, sub_string, case_sensitivity=False, method="first",
     for idx, symbol in enumerate(string):
         current_state = current_state.transitions.get(
             symbol, zero_state.transitions.get(symbol, zero_state)
-            )
+        )
         state = current_state
         while state is not zero_state:
             if state.success:

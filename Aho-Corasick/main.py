@@ -85,7 +85,7 @@ def started_parser() -> int:
                         default="first")
     parser.add_argument(
         "--occurs", type=int, help="number of occurrences", default=None
-        )
+    )
     args = parser.parse_args()
     parse = parse_arguments(args)
     return parse
@@ -210,7 +210,7 @@ def print_matches(
         Fore.CYAN,
         Fore.LIGHTBLUE_EX,
         Fore.BLUE,
-        )
+    )
 
     if not matches_found:
         print("Ничего не было найдено")
@@ -235,7 +235,7 @@ def print_matches(
 
 def advanced_search(
         user_str: str, user_substr: Union[tuple, str, None]
-        ) -> Union[tuple, dict, None]:
+) -> Union[tuple, dict, None]:
     """
     Продвинутый поиск
     :param user_str: Строка
@@ -248,7 +248,7 @@ def advanced_search(
     while registry.lower() not in choices:
         registry = input(
             "Повторите ввод! Произвести поиск чувствительный " "к регистру? (Да / Нет):"
-            )
+        )
     registry = registry.lower() == "да"
 
     print("Введите количество первых вхождений для поиска:")
@@ -262,7 +262,7 @@ def advanced_search(
     while check_direction.lower() not in choices:
         check_direction = input(
             "Повторите ввод! Произвести поиск с начала? (Да / Нет):"
-            )
+        )
     if check_direction.lower() == "да":
         check_direction = "first"
     else:
