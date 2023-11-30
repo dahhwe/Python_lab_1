@@ -10,14 +10,14 @@ from rsa import RSA
 
 class RSAApp(ctk.CTk):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.title('RSA Шифрование')
         self.geometry('1200x800')
         self.rsa_length = RSA(47)
         self.create_widgets()
 
-    def create_widgets(self):
+    def create_widgets(self) -> None:
         self.lbl_original_text = ctk.CTkLabel(self, text="Оригинальный текст:")
         self.lbl_original_text.pack(pady=10)
 
@@ -69,13 +69,13 @@ class RSAApp(ctk.CTk):
         self.txt_converted_text.pack(pady=10)
         self.txt_converted_text.bind("<Button-3>", self.show_context_menu)
 
-    def choose_file(self):
+    def choose_file(self) -> None:
         # Диалог выбора файла
         file_path = filedialog.askopenfilename()
         if file_path:
             self.selected_file_path.set(file_path)  # сохраняем путь к файлу в переменную
 
-    def encrypt_file(self):
+    def encrypt_file(self) -> None:
         file_path = self.selected_file_path.get()
         file_data = read_file_in_binary_mode(file_path)
         public_key = (int(self.ent_public_key_n.get()), int(self.ent_public_key_s.get()))
@@ -86,7 +86,7 @@ class RSAApp(ctk.CTk):
 
         messagebox.showinfo("Успех", f"Файл зашифрован и сохранен как {encrypted_file_path}")
 
-    def decrypt_file(self):
+    def decrypt_file(self) -> None:
         file_path = self.selected_file_path.get()
         if not file_path.endswith('.encrypted'):
             messagebox.showerror("Ошибка", "Выбранный файл не является зашифрованным файлом")
@@ -105,13 +105,13 @@ class RSAApp(ctk.CTk):
 
         messagebox.showinfo("Успех", f"Файл расшифрован и сохранен как {decrypted_file_path}")
 
-    def show_context_menu(self, event):
+    def show_context_menu(self, event) -> None:
         context_menu = tk.Menu(self, tearoff=0)
         context_menu.add_command(label="Копировать", command=lambda: self.copy_text(event))
         context_menu.add_command(label="Вставить", command=lambda: self.paste_text(event))
         context_menu.post(event.x_root, event.y_root)
 
-    def copy_text(self, event):
+    def copy_text(self, event) -> None:
         try:
             self.clipboard_clear()
             selected_text = self.txt_converted_text.selection_get()
@@ -119,14 +119,14 @@ class RSAApp(ctk.CTk):
         except tk.TclError:
             pass  # Ничего не делаем, если нет выделенного текста
 
-    def paste_text(self, event):
+    def paste_text(self, event) -> None:
         try:
             cursor_position = self.txt_converted_text.index(tk.INSERT)
             self.txt_converted_text.insert(cursor_position, self.clipboard_get())
         except tk.TclError:
             pass  # Ничего не делаем, если в буфере обмена нет текста
 
-    def generate_keys(self):
+    def generate_keys(self) -> None:
         public_key, private_key = self.rsa_length.key_gen()
         self.ent_public_key_n.delete(0, tk.END)
         self.ent_public_key_n.insert(0, str(public_key[1]))
@@ -135,7 +135,7 @@ class RSAApp(ctk.CTk):
         self.ent_private_key.delete(0, tk.END)
         self.ent_private_key.insert(0, str(private_key[0]))
 
-    def perform(self):
+    def perform(self) -> None:
         public_key_n = self.ent_public_key_n.get()
         public_key_s = self.ent_public_key_s.get()
         private_key = self.ent_private_key.get()

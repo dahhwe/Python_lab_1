@@ -1,7 +1,7 @@
 import os
 
 
-def read_file_in_binary_mode(file_path):
+def read_file_in_binary_mode(file_path: str) -> bytes:
     """
     Читает содержимое файла в бинарном режиме.
 
@@ -16,12 +16,12 @@ def read_file_in_binary_mode(file_path):
         return b''
 
 
-def write_data_to_file(file_path, data, mode='wb'):
+def write_data_to_file(file_path: str, data: bytes | str, mode: str = 'wb') -> None:
     """
     Записывает данные в файл.
 
     :param file_path: Путь к файлу для записи.
-    :param data: Данные для записи (ожидаются байты).
+    :param data: Данные для записи.
     :param mode: Режим записи ('w' для текстовых файлов, 'wb' для бинарных).
     """
     try:
@@ -31,7 +31,7 @@ def write_data_to_file(file_path, data, mode='wb'):
         print(f"Ошибка при записи в файл {file_path}: {e}")
 
 
-def encrypt_and_write_to_file(file_path, encrypted_data):
+def encrypt_and_write_to_file(file_path: str, encrypted_data: str) -> None:
     """
     Шифрует и записывает данные в файл с добавлением суффикса '_encrypted'.
 
@@ -43,12 +43,12 @@ def encrypt_and_write_to_file(file_path, encrypted_data):
     write_data_to_file(encrypted_file_path, encrypted_data)
 
 
-def read_encrypted_data_from_file(file_path):
+def read_encrypted_data_from_file(file_path: str) -> str:
     """
     Читает зашифрованные данные из файла с расширением .txt.
 
     :param file_path: Путь к файлу с зашифрованными данными.
-    :return: Зашифрованные данные в виде строки.
+    :return: Зашифрованные данные в виде строки или None в случае ошибки.
     """
     _, ext = os.path.splitext(file_path)
     if ext != ".txt":
@@ -57,7 +57,7 @@ def read_encrypted_data_from_file(file_path):
     return read_file_in_binary_mode(file_path).decode('utf-8')
 
 
-def decrypt_and_write_to_file(encrypted_file_path, decrypted_data, extension):
+def decrypt_and_write_to_file(encrypted_file_path: str, decrypted_data: str, extension: str) -> None:
     """
     Расшифровывает данные и записывает их в файл, удаляя суффикс '_encrypted'.
 
