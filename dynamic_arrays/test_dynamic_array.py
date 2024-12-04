@@ -17,12 +17,12 @@ TEST_LEN = [
     ('i', [1, 1], 2),
     ('i', [1, 2], 2),
     ('i', [1, 9999, 3, 4, 1], 5),
-    ]
+]
 
 TEST_GETITEM = [
     ('d', [2.0, 3.0, 4.0], 3),
     ('i', [5, 1, -1], 3),
-    ]
+]
 
 TEST_APPEND = [
     ('d', [], 1, array.array('d', [1.0])),
@@ -33,7 +33,7 @@ TEST_APPEND = [
     ('i', [1], 1, array.array('i', [1, 1])),
     ('i', [2], 1, array.array('i', [2, 1])),
     ('i', [2, 5], 1, array.array('i', [2, 5, 1])),
-    ]
+]
 
 TEST_INSERT = [
     ('d', [], 0, 8, array.array('d', [8.0])),
@@ -52,7 +52,7 @@ TEST_INSERT = [
     ('i', [4, 4, 1], -1, 8, array.array('i', [4, 4, 8, 1])),
     ('i', [4, 4, 1], -3, 8, array.array('i', [8, 4, 4, 1])),
     ('i', [4, 1], -10, 8, array.array('i', [8, 4, 1])),
-    ]
+]
 
 TEST_REMOVE = [
     ('d', [1.0], 1.0, array.array('d', [])),
@@ -61,7 +61,7 @@ TEST_REMOVE = [
     ('i', [1], 1, array.array('i', [])),
     ('i', [2, 2, 2], 2, array.array('i', [2, 2])),
     ('i', [2, 5], 5, array.array('i', [2])),
-    ]
+]
 
 TEST_POP = [
     ('d', [1.0], 0, 1.0, array.array('d', [])),
@@ -74,7 +74,7 @@ TEST_POP = [
     ('i', [2, 5], 1, 5, array.array('i', [2])),
     ('i', [2, 5], -1, 5, array.array('i', [2])),
     ('i', [2, 5], -2, 2, array.array('i', [5])),
-    ]
+]
 
 TEST_POP_INDEX_ERROR = [
     ('d', [], 1),
@@ -83,7 +83,7 @@ TEST_POP_INDEX_ERROR = [
     ('i', [], 1),
     ('i', [3, 1], 5),
     ('i', [4], -2),
-    ]
+]
 
 TEST_REVERSED = [
     ('d', [], array.array('d', [])),
@@ -94,7 +94,7 @@ TEST_REVERSED = [
     ('i', [1], array.array('i', [1])),
     ('i', [2, 2, 2], array.array('i', [2, 2, 2])),
     ('i', [2, 5], array.array('i', [5, 2])),
-    ]
+]
 
 TEST_EQ = [
     ('d', [], array.array('d', [])),
@@ -105,7 +105,7 @@ TEST_EQ = [
     ('i', [1], array.array('i', [1])),
     ('i', [2, 2, 2], array.array('i', [2, 2, 2])),
     ('i', [2, 5], array.array('i', [2, 5])),
-    ]
+]
 
 
 class TestArray(unittest.TestCase):
@@ -258,4 +258,3 @@ class TestArray(unittest.TestCase):
                 my_array.append(i)
         print(
             f'\n\033[33mВремя вашего append: {time.time() - start} сек.\033[0m')
-
